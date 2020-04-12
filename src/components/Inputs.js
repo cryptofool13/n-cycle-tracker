@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { today, stringify } from "../utilites";
+import { today} from "../utilites";
 
 const Inputs = ({ storage }) => {
 	const [newNH3, setNH3] = useState("");
@@ -18,10 +18,7 @@ const Inputs = ({ storage }) => {
 		};
 		console.log(oldData, newData);
 		clearInputs();
-		localStorage.setItem(
-			"n-cycle-data",
-			stringify([...oldData, newData])
-		);
+		setData([...oldData, newData]);
 	};
 
 	const clearInputs = () => {
@@ -35,7 +32,7 @@ const Inputs = ({ storage }) => {
 			<label htmlFor="NH3">Ammonia: </label>
 			<input
 				id="NH3"
-				placeholder="(ppm)"
+				placeholder="(ppm x 10)"
 				type="text"
 				value={newNH3}
 				onChange={(e) => setNH3(e.target.value)}
@@ -44,7 +41,7 @@ const Inputs = ({ storage }) => {
 			<label htmlFor="NO2">Nitrite: </label>
 			<input
 				id="NO2"
-				placeholder="(ppm)"
+				placeholder="(ppm x 10)"
 				type="text"
 				value={newNO2}
 				onChange={(e) => setNO2(e.target.value)}
