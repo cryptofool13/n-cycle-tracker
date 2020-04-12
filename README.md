@@ -1,7 +1,15 @@
-# N-Cycle Tracker
+# Aquarium Tracker
 
-Track the nitrogen cycle of your aquarium.
+Track various parameters of your planted aquarium
 
 Currently implemented to save data in local storage, but may be updated to use MongoDB and user authentication.
 
-I plan on adding other parameters and charts to build out a full aquarium dashboard over time.
+## Goals
+- Dashboard appearance
+- User authentication
+- Text/Email notifications
+
+## Todo Next
+- [ ] Add temperature input and chart
+- [ ] Add algae/appearance input and chart
+- [ ] Add log, used to describe significant occurances to explain parameter changes
