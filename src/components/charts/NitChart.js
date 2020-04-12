@@ -7,10 +7,13 @@ import {
 	CartesianGrid,
 	Tooltip,
 	Legend,
+	Text
 } from "recharts";
 
-const Chart = ({ data }) => {
+const NitChart = ({ data }) => {
 	return (
+		<>
+		<h3>Nitrogen Cycle</h3>
 		<LineChart
 			width={500}
 			height={300}
@@ -25,7 +28,7 @@ const Chart = ({ data }) => {
 			<XAxis dataKey="date" left={{ top: 20 }} />
 			<YAxis />
 			<Tooltip />
-			<Legend verticalAlign='top' />
+			<Legend verticalAlign="top" />
 			<Line
 				type="monotone"
 				dataKey="nh3"
@@ -45,7 +48,8 @@ const Chart = ({ data }) => {
 				stroke="#45afaa"
 			/>
 		</LineChart>
+		</>
 	);
 };
 
-export default Chart;
+export default NitChart;

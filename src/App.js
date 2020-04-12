@@ -1,18 +1,21 @@
 import React from "react";
 
-import Inputs from "./components/Inputs";
-import Chart from "./components/Chart";
+import NitInputs from "./components/N2Inputs";
+import NitChart from "./components/charts/NitChart";
 import { useLocalStorage } from "./hooks";
+import PhInput from "./components/PhInput";
 
-import dummyData from "./data";
+// import dummyData from "./data";
 
 const App = () => {
-	const [data, setData] = useLocalStorage("n-cycle-data", []);
-
+	const [nCycle, setNCycle] = useLocalStorage("n-cycle-data", []);
+	const [ph, setPh] = useLocalStorage("ph-data", [])
+	
 	return (
 		<>
-			<Inputs storage={[data, setData]} />
-			<Chart data={data} />
+			<NitInputs storage={[nCycle, setNCycle]} />
+			<NitChart data={nCycle} />
+			<PhInput storage={[ph, setPh]} />
 		</>
 	);
 };

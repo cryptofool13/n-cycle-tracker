@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-import { today} from "../utilites";
+import { today } from "../utilites";
 
-const Inputs = ({ storage }) => {
+const NitInputs = ({ storage }) => {
 	const [newNH3, setNH3] = useState("");
 	const [newNO2, setNO2] = useState("");
 	const [newNO3, setNO3] = useState("");
@@ -56,9 +56,9 @@ const Inputs = ({ storage }) => {
 				onChange={(e) => setNO3(e.target.value)}
 			/>
 			<br />
-			<button onClick={addData}>Save Data</button>
+			<button onClick={addData}>Save Cycle</button>
 		</>
 	);
 };
 
-export default Inputs;
+export default NitInputs;
