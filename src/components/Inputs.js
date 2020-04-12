@@ -1,0 +1,67 @@
+import React, { useState } from "react";
+
+import { today, stringify } from "../utilites";
+
+const Inputs = ({ storage }) => {
+	const [newNH3, setNH3] = useState("");
+	const [newNO2, setNO2] = useState("");
+	const [newNO3, setNO3] = useState("");
+
+	const [oldData, setData] = storage;
+
+	const addData = () => {
+		const newData = {
+			date: today(),
+			nh3: newNH3,
+			no2: newNO2,
+			no3: newNO3,
+		};
+		console.log(oldData, newData);
+		clearInputs();
+		localStorage.setItem(
+			"n-cycle-data",
+			stringify([...oldData, newData])
+		);
+	};
+
+	const clearInputs = () => {
+		setNH3("");
+		setNO2("");
+		setNO3("");
+	};
+
+	return (
+		<>
+			<label htmlFor="NH3">Ammonia: </label>
+			<input
+				id="NH3"
+				placeholder="(ppm)"
+				type="text"
+				value={newNH3}
+				onChange={(e) => setNH3(e.target.value)}
+			/>
+			<br />
+			<label htmlFor="NO2">Nitrite: </label>
+			<input
+				id="NO2"
+				placeholder="(ppm)"
+				type="text"
+				value={newNO2}
+				onChange={(e) => setNO2(e.target.value)}
+			/>
+			<br />
+			<label htmlFor="NO3">Nitrate: </label>
+			<input
+				id="NO3"
+				placeholder="(ppm)"
+				type="text"
+				value={newNO3}
+				onChange={(e) => setNO3(e.target.value)}
+			/>
+			<br />
+			<button onClick={addData}>Save Data</button>
+		</>
+	);
+};
+
+export default Inputs;
