@@ -7,12 +7,10 @@ import {
 	CartesianGrid,
 	Tooltip,
 	Legend,
-	Text
 } from "recharts";
 
-const NitChart = ({ data }) => {
-	return (
-		<>
+const NitChart = ({ data }) => (
+	<>
 		<h3>Nitrogen Cycle</h3>
 		<LineChart
 			width={500}
@@ -48,8 +46,7 @@ const NitChart = ({ data }) => {
 				stroke="#45afaa"
 			/>
 		</LineChart>
-		</>
-	);
-};
+	</>
+);
 
 export default NitChart;
