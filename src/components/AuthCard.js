@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
 const AuthCard = ({ reff, cardType }) => {
-  const [uname, unameSet] = useState('');
-  const [pword, pwordSet] = useState('');
-  const [pwordConf, pwordConfSet] = useState('')
+  const [uname, unameSet] = useState("");
+  const [pword, pwordSet] = useState("");
+  const [pwordConf, pwordConfSet] = useState("");
 
   return (
     <div ref={reff} className="card auth">
@@ -14,27 +14,18 @@ const AuthCard = ({ reff, cardType }) => {
           ? "Create Acount"
           : ""}
       </h3>
-      <label htmlFor="uname">
-        Username
-        <input
-          type="text"
-          id="uname"
-          onChange={(e) => unameSet(e.target.value)}
-          value={uname}
-        />
-      </label>
-      <label htmlFor="pword">
-        Password
-        <input
-          type="text"
-          id="pword"
-          onChange={(e) => pwordSet(e.target.value)}
-          value={pword}
-        />
-      </label>
-      {cardType === "newAct" && (
+      <div className="cardContent">
+        <label htmlFor="uname">
+          Username
+          <input
+            type="text"
+            id="uname"
+            onChange={(e) => unameSet(e.target.value)}
+            value={uname}
+          />
+        </label>
         <label htmlFor="pword">
-          Confirm Password
+          Password
           <input
             type="text"
             id="pword"
@@ -42,7 +33,18 @@ const AuthCard = ({ reff, cardType }) => {
             value={pword}
           />
         </label>
-      )}
+        {cardType === "newAct" && (
+          <label htmlFor="pword">
+            Confirm Password
+            <input
+              type="text"
+              id="pword"
+              onChange={(e) => pwordConfSet(e.target.value)}
+              value={pwordConf}
+            />
+          </label>
+        )}
+      </div>
     </div>
   );
 };

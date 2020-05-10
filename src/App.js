@@ -4,9 +4,9 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import './styles/App.css'
-import { useLocalStorage } from "./hooks";
-import Home from './components/pages/Home'
+import "./styles/App.css";
+// import { useLocalStorage } from "./hooks";
+import Home from "./components/pages/Home";
 // import NitInputs from "./components/N2Inputs";
 // import PhInput from "./components/PhInput";
 // import NitChart from "./components/charts/NitChart";
@@ -14,8 +14,8 @@ import Home from './components/pages/Home'
 // import dummyData from "./data";
 
 const App = () => {
-  const [nCycle, setNCycle] = useLocalStorage("n-cycle-data", []);
-  const [ph, setPh] = useLocalStorage("ph-data", []);
+  // const [nCycle, setNCycle] = useLocalStorage("n-cycle-data", []);
+  // const [ph, setPh] = useLocalStorage("ph-data", []);
 
   return (
     <>
@@ -29,9 +29,7 @@ const App = () => {
           <Route path="/">
             <Home />
           </Route>
-          <Route path="/dashboard">
-            {/* dashboard page, requireAuth */}
-          </Route>
+          <Route path="/dashboard">{/* dashboard page, requireAuth */}</Route>
         </Switch>
       </Router>
     </>
