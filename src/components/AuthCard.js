@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-const AuthCard = ({ reff, cardType }) => {
+const AuthCard = ({ authRef, cardType }) => {
   const [uname, unameSet] = useState("");
   const [pword, pwordSet] = useState("");
   const [pwordConf, pwordConfSet] = useState("");
 
   return (
-    <div ref={reff} className="card auth">
+    <div ref={authRef} className="card auth">
       <h3>
         {cardType === "login"
           ? "Log In"
@@ -34,11 +34,11 @@ const AuthCard = ({ reff, cardType }) => {
           />
         </label>
         {cardType === "newAct" && (
-          <label htmlFor="pword">
+          <label htmlFor="pwordConf">
             Confirm Password
             <input
               type="text"
-              id="pword"
+              id="pwordConf"
               onChange={(e) => pwordConfSet(e.target.value)}
               value={pwordConf}
             />

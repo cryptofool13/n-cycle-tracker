@@ -15,8 +15,8 @@ const Home = () => {
   return (
     <header className="home">
       <h1 className="home-header">NITRO-GRAPH</h1>
-      {showLogin && <AuthCard reff={loginRef} cardType='login' />}
-      {showNewAct && <AuthCard reff={newActRef} cardType='newAct' />}
+      {showLogin && <AuthCard authRef={loginRef} cardType='login' />}
+      {showNewAct && <AuthCard authRef={newActRef} cardType='newAct' />}
       <div className="authBtns-home">
         <button
           onClick={() => showLoginSet(!showLogin)}

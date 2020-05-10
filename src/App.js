@@ -16,6 +16,8 @@ import Home from "./components/pages/Home";
 const App = () => {
   // const [nCycle, setNCycle] = useLocalStorage("n-cycle-data", []);
   // const [ph, setPh] = useLocalStorage("ph-data", []);
+  const [auth, authSet] = useState('')
+  
 
   return (
     <>
