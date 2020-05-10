@@ -36,3 +36,11 @@
   background-color: #e68646;
   letter-spacing: 2px;
 }
+
+.card {
+  position: absolute;
+  /* left: ; */
+  width: 100%;
+  border: solid purple 2px;
+  height: 100%
+}
