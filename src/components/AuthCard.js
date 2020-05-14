@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import AuthBtn from './AuthBtn'
+
 const AuthCard = ({ authRef, cardType }) => {
   const [uname, unameSet] = useState("");
   const [pword, pwordSet] = useState("");
@@ -44,6 +46,7 @@ const AuthCard = ({ authRef, cardType }) => {
             />
           </label>
         )}
+        <AuthBtn authType={cardType}/>
       </div>
     </div>
   );
