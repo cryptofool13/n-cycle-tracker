@@ -7,6 +7,10 @@ const AuthCard = ({ authRef, cardType }) => {
   const [pword, pwordSet] = useState("");
   const [pwordConf, pwordConfSet] = useState("");
 
+  const passwordsMatch = () => pword === pwordConf
+
+  const credentials = {name:uname,password: pword, passwordsMatch: passwordsMatch()}
+
   return (
     <div ref={authRef} className="card auth">
       <h3>
@@ -46,7 +50,7 @@ const AuthCard = ({ authRef, cardType }) => {
             />
           </label>
         )}
-        <AuthBtn authType={cardType}/>
+        <AuthBtn authType={cardType} data={credentials}/> 
       </div>
     </div>
   );
