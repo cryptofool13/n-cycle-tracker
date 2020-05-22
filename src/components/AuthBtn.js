@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useHistory, useLocation } from "react-router-dom";
+
+import { AuthContext } from "../context";
 
 const AuthBtn = ({ authType, data }) => {
+  const [auth, setAuth] = useContext(AuthContext);
+  let history = useHistory();
+  let location = useLocation();
+
   const path =
     authType === "login" ? "/login" : authType === "newAct" ? "/signup" : "";
 
@@ -16,13 +23,22 @@ const AuthBtn = ({ authType, data }) => {
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
-      .then((token) => {
+      .then(({ token }) => {
         // do something with token, localStorage/State
-        console.log(token);
+        if (token) {
+          setAuth(token);
+          history.push("/dashboard");
+        } else {
+          
+        }
       });
   };
   return (
-    <button className="authBtn authBtn-card" disabled={isDisabled} onClick={submitCredentials}>
+    <button
+      className="authBtn authBtn-card"
+      disabled={isDisabled}
+      onClick={submitCredentials}
+    >
       {authType === "login" && "Login"}
       {authType === "newAct" && "Create Account"}
     </button>
