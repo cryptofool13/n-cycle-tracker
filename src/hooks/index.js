@@ -54,3 +54,20 @@ export const useOnClickOutside = (ref, handler) => {
     };
   }, [ref, handler]);
 };
+
+export const useAuth = () => {
+  const [localAuth, localAuthSet] = useLocalStorage("auth");
+  const authState = useState("");
+
+  const [auth, authSet] = authState;
+
+  useEffect(() => {
+    if (auth) {
+      localAuthSet(auth);
+    } else {
+      authSet(localAuth);
+    }
+  }, [auth, localAuth, authSet, localAuthSet]);
+
+  return authState
+}
