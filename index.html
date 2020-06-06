@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>N-Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1 class="main-header">Nitrogen Cycle Tracker</h1>
+      <p class="sub-header">Track your NO<sub>x</sub> levels</p>
+      <div class="auth">
+        <button onclick="revealLogin()">Log In</button>
+        <button onclick="revealSignup">Sign Up</button>
+      </div>
+    </main>
+    <div class="auth-fields login">
+      <input id="username-login" type="text" />
+      <input id="password-login" type="password" />
+      <button>Submit</button>
+    </div>
+    <div class="auth-fields signup">
+      <input id="username-signup" type="text" />
+      <input id="password-signup" type="password" />
+      <input id="password2-signup" type="password" />
+      <button>Submit</button>
+    </div>
+    <script>
+      let authVisible = false;
+
+      document.addEventListener("click", hideAuthField);
+
+      function hideAuthField(event) {
+        const authBtns = document.querySelector(".auth");
+        const authFields = document.querySelectorAll(".auth-fields");
+
+        if (authBtns.contains(event.target)) {
+          return;
+        }
+
+        authFields.forEach((field) => {
+          if (!event.target.contains(field) && authVisible) {
+            if (field.style.animation) {
+              field.style.animation = `slideDown .5s ease forwards`;
+              authVisible = false;
+            }
+          }
+        });
+      }
+
+      function revealLogin() {
+        authVisible = true;
+        const login = document.querySelector(".login");
+        login.style.animation = `slideUp .5s ease forwards`;
+      }
+    </script>
+  </body>
+</html>
