@@ -58,8 +58,15 @@ main {
   height: 70vh;
   z-index: 5;
   top: 100vh;
-  /* change later */
-  background-color: red;
+  background-color: rgb(112, 171, 173);
+}
+
+.error {
+  background-color: #db5c5c;
+}
+
+.warn {
+  background-color: #ffa034;
 }
 
 .auth-fields label {
@@ -106,5 +113,23 @@ button {
   }
   top {
     top: 100vh;
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(5px);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
   }
 }

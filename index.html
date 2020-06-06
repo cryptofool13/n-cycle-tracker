@@ -25,7 +25,7 @@
         >Password<br />
         <input id="password-login" type="password" />
       </label>
-      <button>Submit</button>
+      <button onclick="login()">Submit</button>
     </div>
     <div class="auth-fields signup">
       <button class="back" onclick="hideAuthField(this)">Back</button>
@@ -41,36 +41,33 @@
         >Confirm Password<br />
         <input id="password2-signup" type="password" />
       </label>
-      <button>Submit</button>
+      <button onclick="signup()">Submit</button>
     </div>
     <script>
+      const URL = "http://localhost:8080";
       let authVisible = false;
 
       document.addEventListener("click", hideAuthField);
 
       function hideAuthField(event) {
-        if (event.tagName) {
-          event.parentElement.style.animation = `slideDown .5s ease forwards`;
-          setTimeout(() => {
-            event.parentElement.style.display = "none";
-          }, 500);
-          authVisible = false;
-        }
-
         const authBtns = document.querySelector(".auth");
         const authFields = document.querySelectorAll(".auth-fields");
+        const inputs = document.querySelectorAll("input");
 
         if (authBtns.contains(event.target)) {
           return;
         }
-        // if()
 
         authFields.forEach((field) => {
-          if (!field.contains(event.target) && authVisible) {
+          if (!field.contains(event.target) || event.tagName) {
             if (field.style.animation.includes("slideUp")) {
               field.style.animation = `slideDown .5s ease forwards`;
               setTimeout(() => {
                 field.style.display = "none";
+                field.classList.remove("warn", "error");
+                inputs.forEach((input) => {
+                  input.value = "";
+                });
               }, 500);
               authVisible = false;
             }
@@ -98,6 +95,18 @@
         setTimeout(() => {
           uname.focus();
         }, 500);
+      }
+
+      function signup() {
+        const authField = document.querySelector(".signup");
+        const username = document.querySelector("#username-signup");
+        const pword = document.querySelector("#password-signup");
+        const pword2 = document.querySelector("#password2-signup");
+
+        if (pword.value !== pword2.value) {
+          authField.classList.add("warn");
+          pword2.style.animation = `shake ease .2s`;
+        }
       }
     </script>
   </body>
