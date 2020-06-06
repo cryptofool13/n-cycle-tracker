@@ -8,7 +8,8 @@ html {
   font-size: 62.5%;
 }
 
-body, main {
+body,
+main {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -23,8 +24,9 @@ main {
   align-items: center;
 }
 
-.main-header, .sub-header {
-  margin-bottom: 4rem;
+.main-header,
+.sub-header {
+  margin-block-end: 4rem;
 }
 
 .main-header {
@@ -44,8 +46,10 @@ main {
 }
 
 .auth-fields {
+  padding-block-start: 5rem;
   position: absolute;
   display: flex;
+  display: none;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
@@ -53,7 +57,13 @@ main {
   height: 70vh;
   z-index: 5;
   top: 100vh;
+  /* change later */
   background-color: red;
+}
+
+.auth-fields label {
+  margin-block-end: 2rem;
+  font-size: 2rem;
 }
 
 @keyframes slideUp {

@@ -16,14 +16,29 @@
       </div>
     </main>
     <div class="auth-fields login">
-      <input id="username-login" type="text" />
-      <input id="password-login" type="password" />
+      <label for="username-login"
+        >Username<br />
+        <input id="username-login" type="text" />
+      </label>
+      <label for="password-login"
+        >Password<br />
+        <input id="password-login" type="password" />
+      </label>
       <button>Submit</button>
     </div>
     <div class="auth-fields signup">
-      <input id="username-signup" type="text" />
-      <input id="password-signup" type="password" />
-      <input id="password2-signup" type="password" />
+      <label for="username-signup"
+        >Username<br />
+        <input id="username-signup" type="text" />
+      </label>
+      <label for="password-signup"
+        >Password<br />
+        <input id="password-signup" type="password" />
+      </label>
+      <label for="password2-signup"
+        >Confirm Password<br />
+        <input id="password2-signup" type="password" />
+      </label>
       <button>Submit</button>
     </div>
     <script>
@@ -38,13 +53,16 @@
         if (authBtns.contains(event.target)) {
           return;
         }
+        // if()
 
         authFields.forEach((field) => {
-          if (!event.target.contains(field) && authVisible) {
+          if (!field.contains(event.target) && authVisible) {
             if (field.style.animation.includes("slideUp")) {
               field.style.animation = `slideDown .5s ease forwards`;
+              setTimeout(() => {
+                field.style.display = "none";
+              }, 500);
               authVisible = false;
-              
             }
           }
         });
@@ -53,13 +71,23 @@
       function revealLogin() {
         authVisible = true;
         const login = document.querySelector(".login");
+        const uname = document.querySelector("#username-login");
+        login.style.display = "flex";
         login.style.animation = `slideUp .5s ease forwards`;
+        setTimeout(() => {
+          uname.focus();
+        }, 500);
       }
 
       function revealSignup() {
         authVisible = true;
         const signup = document.querySelector(".signup");
+        const uname = document.querySelector("#username-signup");
+        signup.style.display = "flex";
         signup.style.animation = `slideUp .5s ease forwards`;
+        setTimeout(() => {
+          uname.focus();
+        }, 500);
       }
     </script>
   </body>
