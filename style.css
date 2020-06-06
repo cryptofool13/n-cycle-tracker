@@ -59,6 +59,14 @@ main {
   z-index: 5;
   top: 100vh;
   background-color: rgb(112, 171, 173);
+  transition: background-color 0.2s;
+}
+
+.warn-text {
+  margin-block-start: 1rem;
+  font-size: 2rem;
+  height: 100%;
+  transition: opacity 0.2s;
 }
 
 .error {

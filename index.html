@@ -26,6 +26,7 @@
         <input id="password-login" type="password" />
       </label>
       <button onclick="login()">Submit</button>
+      <p class="warn-text">test</p>
     </div>
     <div class="auth-fields signup">
       <button class="back" onclick="hideAuthField(this)">Back</button>
@@ -42,9 +43,10 @@
         <input id="password2-signup" type="password" />
       </label>
       <button onclick="signup()">Submit</button>
+      <p class="warn-text"></p>
     </div>
     <script>
-      const URL = "http://localhost:8080";
+      const SERVER_URL = "http://localhost:8080";
       let authVisible = false;
 
       document.addEventListener("click", hideAuthField);
@@ -98,15 +100,70 @@
       }
 
       function signup() {
-        const authField = document.querySelector(".signup");
         const username = document.querySelector("#username-signup");
         const pword = document.querySelector("#password-signup");
         const pword2 = document.querySelector("#password2-signup");
 
-        if (pword.value !== pword2.value) {
-          authField.classList.add("warn");
-          pword2.style.animation = `shake ease .2s`;
+        // add error text ex: "passwords dont match", "user already exists" etc.
+        if (!username.value.length) {
+          warnElement(username);
+          warning("Please enter a username");
+          return;
         }
+        if (!pword.value.length) {
+          warnElement(pword);
+          warning("Please enter a password");
+          return;
+        }
+        if (!pword2.value.length) {
+          warnElement(pword2);
+          warning("Please retype your password");
+          return;
+        }
+
+        if (pword.value !== pword2.value) {
+          warnElement(pword2);
+          warning("Passwords do not match");
+          return;
+        }
+
+        fetch(`${SERVER_URL}/signup`, {
+          method: "POST",
+          body: JSON.stringify({ name: username.value, password: pword.value }),
+        })
+          .then((res) => {
+            return res.json();
+          })
+          .then((response) => {
+            console.log(response);
+          });
+      }
+
+      function warnElement(el) {
+        const authField = document.querySelector(".signup");
+        authField.classList.add("warn");
+        el.style.animation = `shake ease .2s`;
+        let t1 = setTimeout(() => {
+          el.style.animation = ``;
+          clearTimeout(t1);
+        }, 200);
+        let t2 = setTimeout(() => {
+          authField.classList.remove("warn");
+          clearTimeout(t2);
+        }, 2000);
+      }
+
+      function warning(text) {
+        const warnTexts = document.querySelectorAll(".warn-text");
+        warnTexts.forEach((warnText) => {
+          warnText.innerHTML = text;
+          warnText.style.opacity = 1;
+          let t1 = setTimeout(() => {
+            warnText.innerHTML = "";
+            warnText.opacity = 0;
+            clearTimeout(t1);
+          }, 5000);
+        });
       }
     </script>
   </body>
