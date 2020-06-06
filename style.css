@@ -27,6 +27,7 @@ main {
 .main-header,
 .sub-header {
   margin-block-end: 4rem;
+  text-align: center;
 }
 
 .main-header {
@@ -46,7 +47,7 @@ main {
 }
 
 .auth-fields {
-  padding-block-start: 5rem;
+  /* padding-block-start: 5rem; */
   position: absolute;
   display: flex;
   display: none;
@@ -62,8 +63,33 @@ main {
 }
 
 .auth-fields label {
-  margin-block-end: 2rem;
+  margin-block-start: 2rem;
   font-size: 2rem;
+}
+
+.auth-fields label:first-child {
+  margin-block-start: 0;
+}
+
+.auth-fields button {
+  margin-block-start: 2rem;
+}
+
+.back {
+  justify-self: flex-start;
+  align-self: flex-start;
+  margin-inline-start: 2rem;
+  margin-block-start: 2rem;
+}
+
+button {
+  padding-block-start: 0.5rem;
+  padding-block-end: 0.5rem;
+  padding-inline-start: 2rem;
+  padding-inline-end: 2rem;
+  border-radius: 2rem;
+  border: none;
+  background: #ccc;
 }
 
 @keyframes slideUp {
@@ -71,12 +97,12 @@ main {
     top: 100vh;
   }
   to {
-    top: 50vh;
+    top: 40vh;
   }
 }
 @keyframes slideDown {
   from {
-    top: 50vh;
+    top: 40vh;
   }
   top {
     top: 100vh;
