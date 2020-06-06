@@ -12,7 +12,7 @@
       <p class="sub-header">Track your NO<sub>x</sub> levels</p>
       <div class="auth">
         <button onclick="revealLogin()">Log In</button>
-        <button onclick="revealSignup">Sign Up</button>
+        <button onclick="revealSignup()">Sign Up</button>
       </div>
     </main>
     <div class="auth-fields login">
@@ -41,9 +41,10 @@
 
         authFields.forEach((field) => {
           if (!event.target.contains(field) && authVisible) {
-            if (field.style.animation) {
+            if (field.style.animation.includes("slideUp")) {
               field.style.animation = `slideDown .5s ease forwards`;
               authVisible = false;
+              
             }
           }
         });
@@ -53,6 +54,12 @@
         authVisible = true;
         const login = document.querySelector(".login");
         login.style.animation = `slideUp .5s ease forwards`;
+      }
+
+      function revealSignup() {
+        authVisible = true;
+        const signup = document.querySelector(".signup");
+        signup.style.animation = `slideUp .5s ease forwards`;
       }
     </script>
   </body>

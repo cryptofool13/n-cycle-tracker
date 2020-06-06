@@ -61,12 +61,12 @@ main {
     top: 100vh;
   }
   to {
-    top: 70vh;
+    top: 50vh;
   }
 }
 @keyframes slideDown {
   from {
-    top: 70vh;
+    top: 50vh;
   }
   top {
     top: 100vh;
