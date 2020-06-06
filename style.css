@@ -1,0 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body, main {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-header, .sub-header {
+  margin-bottom: 4rem;
+}
+
+.main-header {
+  font-size: 4rem;
+}
+
+.sub-header {
+  font-size: 2rem;
+}
+
+.auth {
+  height: 8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.auth-fields {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100vw;
+  height: 70vh;
+  z-index: 5;
+  top: 100vh;
+  background-color: red;
+}
+
+@keyframes slideUp {
+  from {
+    top: 100vh;
+  }
+  to {
+    top: 70vh;
+  }
+}
+@keyframes slideDown {
+  from {
+    top: 70vh;
+  }
+  top {
+    top: 100vh;
+  }
+}
