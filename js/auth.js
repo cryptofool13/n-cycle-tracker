@@ -128,6 +128,7 @@ function signup() {
         // save token in localstorage and nav to next page
         localStorage.setItem("n-cycle-auth", response.token);
         // nav to next page
+        window.location = "home.html";
       }
     })
     .catch((e) => {
@@ -156,6 +157,9 @@ function login() {
     .then((res) => {
       if (res.ok) {
         return res.json();
+      } else {
+        console.log(res)
+        
       }
     })
     .then((response) => {

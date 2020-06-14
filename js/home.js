@@ -20,17 +20,24 @@ window.onload = () => {
           return res.json();
         }
       })
-      .then(({ valid }) => {
+      .then(async ({ valid }) => {
         if (!valid) {
-          localStorage.removeItem("n-cycle-auth");
-          window.location = "index.html";
+          clearStorage();
           return;
         }
-        const userData = getUserData(token);
-        if(!userData.tanks) {
-          // prompt user to create a new tank
-          
+        const userData = await getUserData(token);
+        if (!userData) {
+          localStorage.removeItem("n-cycle-auth");
+          window.location = "index.html";
         }
+        if (!userData.tanks.length) {
+          // prompt user to create a new tank
+          // show popup form to fill in name and gallons of tank
+          console.log("create a new tank!");
+          return;
+        }
+        // fetch data for all tanks
+        let tanks = await getTanks(token, userData.tanks);
         // display tank data
       });
   } else {
@@ -46,6 +53,31 @@ async function getUserData(token) {
   let { user } = res;
   return user;
 }
-// what happens after token is valid and user is loaded in browser?
-// if no tanks, prompt user to craete new tank
-// else display tanks on page
+
+function getTanks(token, tankIds) {
+  return Promise.all(
+    tankIds.map(({ _id }) => {
+      return fetch(`${SERVER_URL}/tank/${_id}`, {
+        headers: { authorization: "Bearer " + token },
+      });
+    })
+  )
+    .then((responses) => {
+      return Promise.all(
+        responses.map((res) => {
+          return res.json();
+        })
+      );
+    })
+    .then((w) => {
+      return w;
+    })
+    .catch((e) => {
+      console.log("something wrong with Promise.all fetching tanks");
+    });
+}
+
+function clearStorage() {
+  localStorage.removeItem("n-cycle-auth");
+  window.location = "index.html";
+}
