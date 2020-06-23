@@ -1,3 +1,5 @@
+/* #70abad, #ad7270, #abad70, #7270ad */
+
 * {
   margin: 0;
   padding: 0;
@@ -22,6 +24,7 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #7270ad;
 }
 
 .main-header,
@@ -58,7 +61,7 @@ main {
   height: 70vh;
   z-index: 5;
   top: 100vh;
-  background-color: rgb(112, 171, 173);
+  background-color: #70abad;
   transition: background-color 0.2s;
 }
 
@@ -95,6 +98,7 @@ main {
   align-self: flex-start;
   margin-inline-start: 2rem;
   margin-block-start: 2rem;
+  background-color: #ccc;
 }
 
 button {
@@ -104,7 +108,7 @@ button {
   padding-inline-end: 2rem;
   border-radius: 2rem;
   border: none;
-  background: #ccc;
+  background-color: #abad70;
 }
 
 @keyframes slideUp {
