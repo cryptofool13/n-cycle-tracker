@@ -39,11 +39,17 @@ window.onload = () => {
         // fetch data for all tanks
         let tanks = await getTanks(token, userData.tanks);
         // display tank data
+        console.log(tanks)
+        // take array of tanks and add them to .tank-list.
       });
   } else {
     window.location = "index.html";
   }
 };
+
+function tankIdentifier(tank) {
+  // take tank data and populate a template with data
+}
 
 async function getUserData(token) {
   let req = await fetch(`${SERVER_URL}/user`, {
@@ -56,8 +62,8 @@ async function getUserData(token) {
 
 function getTanks(token, tankIds) {
   return Promise.all(
-    tankIds.map(({ _id }) => {
-      return fetch(`${SERVER_URL}/tank/${_id}`, {
+    tankIds.map((id) => {
+      return fetch(`${SERVER_URL}/tank/${id}`, {
         headers: { authorization: "Bearer " + token },
       });
     })
