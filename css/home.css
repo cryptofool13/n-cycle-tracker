@@ -3,3 +3,36 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+html {
+  font-size: 62.5%;
+}
+
+body,
+main {
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+nav {
+  background-color: #70abad;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 2rem;
+  padding-inline-start: 2rem;
+  padding-inline-end: 2rem;
+  line-height: 2.25rem;
+  height: 4.5rem;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #7270ad;
+}
