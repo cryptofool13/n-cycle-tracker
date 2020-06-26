@@ -1,6 +1,9 @@
 const SERVER_URL = "http://localhost:8080";
 let user;
 window.onload = () => {
+  const main = document.querySelector("main");
+
+  main.addEventListener("click", hideTankList);
   // check local storage for saved token
   let token;
   try {
@@ -39,13 +42,28 @@ window.onload = () => {
         // fetch data for all tanks
         let tanks = await getTanks(token, userData.tanks);
         // display tank data
-        console.log(tanks)
+        console.log(tanks);
         // take array of tanks and add them to .tank-list.
       });
   } else {
     window.location = "index.html";
   }
 };
+
+function hideTankList(e) {
+  const tankList = document.querySelector(".tank-list");
+  if (e.target.contains(tankList)&& e.target !== tankList) {
+    tankList.classList.add('hidden')
+  }
+}
+
+function displayTankOptions() {
+  // make tank selector visible
+  const tankList = document.querySelector(".tank-list");
+  tankList.classList.toggle("hidden");
+}
+
+function renderTank(tank) {}
 
 function tankIdentifier(tank) {
   // take tank data and populate a template with data
