@@ -1,3 +1,7 @@
+:root {
+  --tank-list-height: 20vh;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -27,12 +31,65 @@ nav {
   height: 4.5rem;
 }
 
+nav button {
+  padding-block-start: 0.5rem;
+  padding-block-end: 0.5rem;
+  padding-inline-start: 2rem;
+  padding-inline-end: 2rem;
+  border-radius: 2rem;
+  border: none;
+  background-color: #abad70;
+}
+
+.nav-btns :last-child {
+  margin-inline-start: 2rem;
+}
+
 main {
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   background-color: #7270ad;
+}
+
+.tank-list {
+  position: relative;
+  height: var(--tank-list-height);
+  width: 100vw;
+  padding: 2rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #7e9fa0;
+  animation: toggleTankList .5s forwards ease;
+  top: 0;
+}
+.tank-list.hidden {
+  /* top: calc(var(--tank-list-height) * -1); */
+  animation: unToggleTankList .5s forwards ease;
+}
+.tank {
+  list-style: none;
+  background-color: #70abad;
+  padding: 1rem;
+}
+
+@keyframes unToggleTankList {
+  from {
+    top: 0;
+  }
+  to {
+    top: calc(var(--tank-list-height) * -1);
+  }
+}
+@keyframes toggleTankList {
+  from {
+    top: calc(var(--tank-list-height) * -1);
+  }
+  to {
+    top: 0;
+  }
 }
