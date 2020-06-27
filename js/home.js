@@ -1,3 +1,9 @@
+const TANKS_DEV = [
+  { gallons: 15, name: "Tank 1" },
+  { gallons: 25, name: "Tank 2" },
+  // { gallons: 15, name: "Tank 3" },
+];
+
 const SERVER_URL = "http://localhost:8080";
 let user;
 window.onload = () => {
@@ -43,6 +49,11 @@ window.onload = () => {
         let tanks = await getTanks(token, userData.tanks);
         // display tank data
         console.log(tanks);
+        const tankList = document.querySelector('.tank-list')
+        // using hard coded tanks for DEV
+        TANKS_DEV.forEach(tank => {
+          tankList.appendChild(renderTank(tank))
+        })
         // take array of tanks and add them to .tank-list.
       });
   } else {
@@ -52,21 +63,28 @@ window.onload = () => {
 
 function hideTankList(e) {
   const tankList = document.querySelector(".tank-list");
-  if (e.target.contains(tankList)&& e.target !== tankList) {
-    tankList.classList.add('hidden')
+  if (e.target.contains(tankList) && e.target !== tankList) {
+    tankList.classList.add("hidden");
   }
 }
 
 function displayTankOptions() {
   // make tank selector visible
   const tankList = document.querySelector(".tank-list");
+  tankList.classList.remove("init");
   tankList.classList.toggle("hidden");
 }
 
-function renderTank(tank) {}
-
-function tankIdentifier(tank) {
-  // take tank data and populate a template with data
+function renderTank(tank) {
+  const wrapper = document.createElement("li");
+  wrapper.classList.add('tank')
+  const name = document.createElement("p");
+  const gals = document.createElement("p");
+  name.innerText = tank.name;
+  gals.innerText = tank.gallons + " gal";
+  wrapper.appendChild(name)
+  wrapper.appendChild(gals)
+  return wrapper;
 }
 
 async function getUserData(token) {

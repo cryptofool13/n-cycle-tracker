@@ -133,6 +133,8 @@ function signup() {
     })
     .catch((e) => {
       console.log("catching error: ", e);
+      warning("Failed to contact server");
+      warnElement(null, "signup");
     });
 }
 
@@ -158,8 +160,7 @@ function login() {
       if (res.ok) {
         return res.json();
       } else {
-        console.log(res)
-        
+        console.log(res);
       }
     })
     .then((response) => {
@@ -174,6 +175,8 @@ function login() {
     })
     .catch((e) => {
       console.log("catching error: ", e);
+      warning("Failed to contact server");
+      warnElement(null, "login");
     });
 }
 

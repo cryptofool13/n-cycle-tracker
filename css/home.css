@@ -65,16 +65,25 @@ main {
   align-items: center;
   background-color: #7e9fa0;
   animation: toggleTankList .5s forwards ease;
-  top: 0;
+  top: calc(var(--tank-list-height) * -1);
+  font-size: 2rem;
 }
 .tank-list.hidden {
   /* top: calc(var(--tank-list-height) * -1); */
   animation: unToggleTankList .5s forwards ease;
 }
+.tank-list.init {
+  animation: none;
+}
 .tank {
   list-style: none;
   background-color: #70abad;
   padding: 1rem;
+  /* desktop mode display 3 tanks */
+  /* mobile mode display   */
+  /* max-width: calc(100vw / 5 - 5rem);
+   */
+   width: 40%;
 }
 
 @keyframes unToggleTankList {
@@ -92,4 +101,9 @@ main {
   to {
     top: 0;
   }
+}
+
+@media  and (min-device-width: 768px) 
+and (max-device-width: 1024px) {
+
 }
