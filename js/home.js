@@ -47,11 +47,15 @@ window.onload = () => {
         }
         // fetch data for all tanks
         let tanks = await getTanks(token, userData.tanks);
+        // add loading state if tanks arent here yet!!
+
         // display tank data
-        console.log(tanks);
+        // console.log(tanks);
         const tankList = document.querySelector(".tank-list");
         // using hard coded tanks for DEV
         tanks = TANKS_DEV;
+        // store ref to tanks on window
+        window["n-cycle-tanks"] = tanks;
         const len = tanks.length;
         // if fewer than 3 tanks, display "add new tank" tile
         tanks.forEach((tank, i) => {
@@ -62,6 +66,7 @@ window.onload = () => {
         }
       });
   } else {
+    // nav to login page
     window.location = "index.html";
   }
 };
@@ -95,8 +100,8 @@ function renderTank(tank, i) {
 }
 
 function handleTankClick(event) {
-  // sometimes index is undefined?? possibly due to low network speeds...
-  console.log(`tank ${event.target.dataset.index} clicked`);
+  console.log(`tank ${this.dataset.index} clicked`);
+  console.log(window["n-cycle-tanks"][this.dataset.index]);
 }
 
 function handleNewTankClick(event) {
