@@ -49,11 +49,17 @@ window.onload = () => {
         let tanks = await getTanks(token, userData.tanks);
         // display tank data
         console.log(tanks);
-        const tankList = document.querySelector('.tank-list')
+        const tankList = document.querySelector(".tank-list");
         // using hard coded tanks for DEV
-        TANKS_DEV.forEach(tank => {
-          tankList.appendChild(renderTank(tank))
-        })
+        tanks = TANKS_DEV;
+        const len = tanks.length;
+        // if fewer than 3 tanks, display "add new tank" tile
+        tanks.forEach((tank) => {
+          tankList.appendChild(renderTank(tank, len));
+        });
+        if (tanks.length < 3) {
+          tankList.appendChild(newTankTile(len));
+        }
         // take array of tanks and add them to .tank-list.
       });
   } else {
@@ -75,15 +81,28 @@ function displayTankOptions() {
   tankList.classList.toggle("hidden");
 }
 
-function renderTank(tank) {
+function renderTank(tank, len) {
   const wrapper = document.createElement("li");
-  wrapper.classList.add('tank')
+  wrapper.classList.add("tank");
   const name = document.createElement("p");
   const gals = document.createElement("p");
   name.innerText = tank.name;
   gals.innerText = tank.gallons + " gal";
-  wrapper.appendChild(name)
-  wrapper.appendChild(gals)
+  wrapper.appendChild(name);
+  wrapper.appendChild(gals);
+  // if (len === 3) {
+  //   wrapper.style.width = "28%";
+  // } else {
+  //   wrapper.style.width = "40%";
+  // }
+
+  return wrapper;
+}
+
+function newTankTile() {
+  const wrapper = document.createElement("li");
+  wrapper.classList.add("tank");
+  wrapper.innerText = "Add new tank";
   return wrapper;
 }
 

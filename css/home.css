@@ -81,9 +81,8 @@ main {
   padding: 1rem;
   /* desktop mode display 3 tanks */
   /* mobile mode display   */
-  /* max-width: calc(100vw / 5 - 5rem);
-   */
-   width: 40%;
+   height: calc(var(--tank-list-height) - 4rem);
+   width: 28%;
 }
 
 @keyframes unToggleTankList {
@@ -103,7 +102,14 @@ main {
   }
 }
 
-@media  and (min-device-width: 768px) 
+@media screen and (min-device-width: 768px) 
 and (max-device-width: 1024px) {
+  /* tablet styles */
+  /* basically scalled down desktop */
+}
 
+@media screen and (min-device-width: 200px) 
+and (max-device-width: 767px) {
+  /* phone styles */
+  /* column layout, flex */
 }
