@@ -54,13 +54,12 @@ window.onload = () => {
         tanks = TANKS_DEV;
         const len = tanks.length;
         // if fewer than 3 tanks, display "add new tank" tile
-        tanks.forEach((tank) => {
-          tankList.appendChild(renderTank(tank, len));
+        tanks.forEach((tank, i) => {
+          tankList.appendChild(renderTank(tank, i));
         });
-        if (tanks.length < 3) {
+        if (len < 3) {
           tankList.appendChild(newTankTile(len));
         }
-        // take array of tanks and add them to .tank-list.
       });
   } else {
     window.location = "index.html";
@@ -75,14 +74,15 @@ function hideTankList(e) {
 }
 
 function displayTankOptions() {
-  // make tank selector visible
   const tankList = document.querySelector(".tank-list");
   tankList.classList.remove("init");
   tankList.classList.toggle("hidden");
 }
 
-function renderTank(tank, len) {
+function renderTank(tank, i) {
+  // add click handler
   const wrapper = document.createElement("li");
+  wrapper.addEventListener("click", handleTankClick);
   wrapper.classList.add("tank");
   const name = document.createElement("p");
   const gals = document.createElement("p");
@@ -90,17 +90,22 @@ function renderTank(tank, len) {
   gals.innerText = tank.gallons + " gal";
   wrapper.appendChild(name);
   wrapper.appendChild(gals);
-  // if (len === 3) {
-  //   wrapper.style.width = "28%";
-  // } else {
-  //   wrapper.style.width = "40%";
-  // }
-
+  wrapper.dataset.index = i;
   return wrapper;
+}
+
+function handleTankClick(event) {
+  // sometimes index is undefined?? possibly due to low network speeds...
+  console.log(`tank ${event.target.dataset.index} clicked`);
+}
+
+function handleNewTankClick(event) {
+  console.log("creating new tank");
 }
 
 function newTankTile() {
   const wrapper = document.createElement("li");
+  wrapper.addEventListener("click", handleNewTankClick);
   wrapper.classList.add("tank");
   wrapper.innerText = "Add new tank";
   return wrapper;
