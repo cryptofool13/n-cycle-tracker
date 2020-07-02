@@ -55,6 +55,9 @@ window.onload = () => {
         // using hard coded tanks for DEV
         tanks = TANKS_DEV;
         // store ref to tanks on window
+        displayInitalData(tanks);
+        console.log(tanks);
+
         window["n-cycle-tanks"] = tanks;
         const len = tanks.length;
         // if fewer than 3 tanks, display "add new tank" tile
@@ -97,6 +100,49 @@ function renderTank(tank, i) {
   wrapper.appendChild(gals);
   wrapper.dataset.index = i;
   return wrapper;
+}
+
+function displayInitalData(tanks) {
+  const mainArea = document.querySelector(".main-area");
+  if (tanks.length > 1) {
+    // display large tank components prompting user to click one
+    const tanksHtml = displayTanksInit(tanks);
+    const tankArea = document.createElement("div");
+    tankArea.classList.add("tank-area");
+
+    const prompt = document.createElement("p");
+    prompt.classList.add("prompt");
+    prompt.innerHTML = "Select a tank";
+
+    console.log(tanksHtml);
+    tanksHtml.forEach((el) => {
+      tankArea.appendChild(el);
+    });
+    mainArea.appendChild(tankArea);
+    mainArea.appendChild(prompt)
+  } else {
+    // display chart data for sole tank
+  }
+}
+
+function displaySelectedTank(tank) {}
+
+function displayTanksInit(tanks) {
+  return tanks.map((tank) => createTankLarge(tank));
+}
+
+function createTankLarge(tank) {
+  const tankWrapper = document.createElement("div");
+  tankWrapper.classList.add("tank-large");
+  const tankName = document.createElement("p");
+  tankName.classList.add("tank-name");
+  const tankGal = document.createElement("p");
+  tankGal.classList.add("tank-gal");
+  tankName.innerHTML = tank.name;
+  tankGal.innerHTML = tank.gallons + " gals";
+  tankWrapper.appendChild(tankName);
+  tankWrapper.appendChild(tankGal);
+  return tankWrapper;
 }
 
 function handleTankClick(event) {
