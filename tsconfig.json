@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "es2015",
     "noImplicitAny": true,
     "removeComments": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "outDir": "js"
   },
+  
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"],
-  "lib": ["dom", "es2017", "es6"]
+  "lib": ["dom", "ES2015.promise", "ES2018", "es6"]
 }

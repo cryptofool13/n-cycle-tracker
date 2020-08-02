@@ -1,11 +1,11 @@
-// @ts-ignore
 const SERVER_URL = "http://localhost:8080";
 let authVisible = false;
 
 document.addEventListener("click", hideAuthField);
+
 window.onload = () => {
   // check local storage for saved token
-  let token: string;
+  let token;
   try {
     token = localStorage.getItem("n-cycle-auth");
   } catch (e) {
@@ -29,24 +29,23 @@ window.onload = () => {
           localStorage.removeItem("n-cycle-auth");
           return;
         }
-        window.location = { ...window.location, href: "home.html" };
+        window.location = "home.html";
       });
   }
 };
 
-function hideAuthField(event: MouseEvent) {
+function hideAuthField(event) {
   const authBtns = document.querySelector(".auth");
   const authFields = document.querySelectorAll(".auth-fields");
   const inputs = document.querySelectorAll("input");
 
-  if (authBtns.contains(event.target as HTMLElement)) {
+  if (authBtns.contains(event.target)) {
     return;
   }
 
-  authFields.forEach((field: HTMLElement) => {
-    let element = event.target as HTMLElement;
-    if (!field.contains(event.target as HTMLElement) || element.tagName) {
-      if (field.style.animation.indexOf("slideUp") !== -1) {
+  authFields.forEach((field) => {
+    if (!field.contains(event.target) || event.tagName) {
+      if (field.style.animation.includes("slideUp")) {
         field.style.animation = `slideDown .5s ease forwards`;
         setTimeout(() => {
           field.style.display = "none";
@@ -65,8 +64,8 @@ function hideAuthField(event: MouseEvent) {
 
 function revealLogin() {
   authVisible = true;
-  const login: HTMLElement = document.querySelector(".login");
-  const uname: HTMLElement = document.querySelector("#username-login");
+  const login = document.querySelector(".login");
+  const uname = document.querySelector("#username-login");
   login.style.display = "flex";
   login.style.animation = `slideUp .5s ease forwards`;
   setTimeout(() => {
@@ -76,8 +75,8 @@ function revealLogin() {
 
 function revealSignup() {
   authVisible = true;
-  const signup: HTMLElement = document.querySelector(".signup");
-  const uname: HTMLElement = document.querySelector("#username-signup");
+  const signup = document.querySelector(".signup");
+  const uname = document.querySelector("#username-signup");
   signup.style.display = "flex";
   signup.style.animation = `slideUp .5s ease forwards`;
   setTimeout(() => {
@@ -86,9 +85,9 @@ function revealSignup() {
 }
 
 function signup() {
-  const username: HTMLInputElement = document.querySelector("#username-signup");
-  const pword: HTMLInputElement = document.querySelector("#password-signup");
-  const pword2: HTMLInputElement = document.querySelector("#password2-signup");
+  const username = document.querySelector("#username-signup");
+  const pword = document.querySelector("#password-signup");
+  const pword2 = document.querySelector("#password2-signup");
 
   if (!username.value.length) {
     warnElement(username, "signup");
@@ -129,7 +128,7 @@ function signup() {
         // save token in localstorage and nav to next page
         localStorage.setItem("n-cycle-auth", response.token);
         // nav to next page
-        window.location = { ...window.location, href: "home.html" };
+        window.location = "home.html";
       }
     })
     .catch((e) => {
@@ -140,8 +139,8 @@ function signup() {
 }
 
 function login() {
-  const username: HTMLInputElement = document.querySelector("#username-login");
-  const pword: HTMLInputElement = document.querySelector("#password-login");
+  const username = document.querySelector("#username-login");
+  const pword = document.querySelector("#password-login");
   if (!username.value.length) {
     warnElement(username, "login");
     warning("Please enter a username");
@@ -171,7 +170,7 @@ function login() {
       } else {
         localStorage.setItem("n-cycle-auth", response.token);
         // nav to next page
-        window.location = { ...window.location, href: "home.html" };
+        window.location = "home.html";
       }
     })
     .catch((e) => {
@@ -181,7 +180,7 @@ function login() {
     });
 }
 
-function warnElement(el: HTMLElement, useCase: string) {
+function warnElement(el, where) {
   const authFieldS = document.querySelector(".signup");
   const authFieldL = document.querySelector(".login");
 
@@ -192,8 +191,8 @@ function warnElement(el: HTMLElement, useCase: string) {
       clearTimeout(t1);
     }, 200);
   }
-  let t2: number;
-  if (useCase === "signup") {
+  let t2;
+  if (where === "signup") {
     authFieldS.classList.add("warn");
     t2 = setTimeout(() => {
       authFieldS.classList.remove("warn");
@@ -208,16 +207,14 @@ function warnElement(el: HTMLElement, useCase: string) {
   }
 }
 
-function warning(text: string) {
-  const warnTexts: NodeListOf<HTMLElement> = document.querySelectorAll(
-    ".warn-text"
-  );
+function warning(text) {
+  const warnTexts = document.querySelectorAll(".warn-text");
   warnTexts.forEach((warnText) => {
     warnText.innerHTML = text;
-    warnText.style.opacity = "1";
+    warnText.style.opacity = 1;
     let t1 = setTimeout(() => {
       warnText.innerHTML = "";
-      warnText.style.opacity = "0";
+      warnText.opacity = 0;
       clearTimeout(t1);
     }, 5000);
   });
