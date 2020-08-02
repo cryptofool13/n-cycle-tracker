@@ -1,0 +1,26 @@
+{
+  "name": "n-cycle-html",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup --watch --config ./rollup.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cryptofool13/n-cycle-tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cryptofool13/n-cycle-tracker/issues"
+  },
+  "homepage": "https://github.com/cryptofool13/n-cycle-tracker#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^5.0.2",
+    "rollup": "^2.23.0",
+    "typescript": "^3.9.7"
+  }
+}
